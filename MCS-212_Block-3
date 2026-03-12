@@ -1,0 +1,2439 @@
+UNIT 1 COMBINATORICS
+
+Combinatorics – An
+Introduction
+
+Structure
+1.0
+1.1
+1.2
+1.3
+
+Introduction
+Objectives
+Multiplication and Addition Principles
+Permutations
+1.3.1 Permutations of Objects not Necessarily Distinct
+1.3.2 Circular Permutations
+
+1.4
+1.5
+1.6
+1.7
+1.8
+
+Combinations
+Binomial Coefficients
+Combinatorial Probability
+Summary
+Solutions/ Answers
+
+1.0 INTRODUCTION
+Let us start with thinking about how to assess the efficiency of a computer
+programme. For this we would need to estimate the number of times each procedure is
+called during the execution of the programme. How would we do this? The theory of
+combinatorics helps us in this matter, as you will see while studying this unit.
+Combinatorics deals with counting the number of ways in which objects can be
+arranged according to some pattern (listing). Mostly, it deals with a finite number of
+objects and a finite number of ways of arranging them. Sometimes an infinite number
+of objects and infinite number of ways in which they can be arranged are also
+considered. However, in this unit and block, we shall restrict our discussion to a finite
+number of objects.
+We start our discussion in Sec. 1.2, with two counting principles. These principles
+help us in counting the number of ways in which a task can be done when it consists
+of several subtasks, and there are many possible ways of doing the subtasks.
+In Sec. 1.3 we look at arrangements of objects in which the order matters. Such
+arrangements are called permutations. Here we look at various linear and circular
+permutations, and how to count their number in a given situation.
+In Sec. 1.4, we consider arrangements of objects in which the order does not matter.
+Such arrangements are called combinations. We will consider situations that require
+us to count combinations. You will see that most of these situations require us to
+apply the multiplication principle also.
+In the next section, Sec. 1.5, we consider binomial and multinomial coefficients. We
+see how they are related to the objects studied in Sec. 1.4.
+Finally, in Sec. 1.6, we consider the applications of what we have presented in the rest
+of the unit, for finding the probability of the occurrence of an event. As you will see,
+this application is natural, since we use similar counting arguments for obtaining
+discrete probabilities. This discussion will be useful for you, for instance, in coding
+theory as well as in designing reliable computer systems.
+We continue our study of combinatorics in the next unit. We also have a section of
+miscellaneous exercises at the end of the block of which several are based on this unit.
+Doing these exercises, and every exercise given in the unit, will help you achieve the
+following objectives of this unit.
+137
+
+Basic Combinatorics
+
+1.1 OBJECTIVES
+After going through this unit, you should be able to:
+•
+•
+•
+•
+•
+
+1.2
+
+explain the multiplication and addition principles, and apply them;
+differentiate between situations involving permutations and those involving
+combinations;
+perform calculations involving permutations and combinations;
+prove and use formulae involving binomial and multinomial coefficients;
+apply the concepts presented so far for calculating combinatorial probabilities.
+
+MULTIPLICATION AND ADDITION
+PRINCIPLES
+
+Let us start with considering the following situation: Suppose a shop sells six styles of
+pants. Each style is available in 8 lengths, six waist sizes, and four colours. How many
+different kinds of pants does the shop need to stock?
+There are 6 possible types of pants; then for each type, there are 8 possible length
+sizes; for each of these, there are 6 possible waist sizes; and each of these is available
+in 4 different colours. So, if you sit down to count all the possibilities, you will find a
+huge number, and may even miss some out! However, if you apply the multiplication
+principle, you will have the answer in a jiffy!
+So, what is the multiplication principle? There are various ways of explaining this
+principle. One way is the following:
+Suppose that a task/procedure consists of a sequence of subtasks or steps, say, Subtask
+1, Subtask 2,…, Subtask k. Furthermore, suppose that Subtask 1 can be performed in
+n1, ways, Subtask 2 can be performed in n2 ways after Subtask 1 has been performed,
+Subtask 3 can be performed in n3 ways after Subtask 1 and Subtask 2 have been
+performed, and so on. Then the multiplication principle says that the number of
+ways in which the whole task can be performed is n1.n2….nk.
+Let us consider this principle in the context of boxes and objects filling them. Suppose
+there are m boxes. Suppose the first box can be filled up in k(1) ways. For every way
+of filling the first box, suppose there are k(2) ways of filling the second box. Then the
+two boxes can be filled up in k(1).k(2) ways. In general, if for every way of filling the
+first (r − 1) boxes, the rth box can be filled up in k(r) ways, for r = 2,3,…, m, then the
+total number of ways of filling all the boxes is k(1).k(2)… k(m).
+So let us see how the multiplication principle can be applied to the situation above
+(the shop selling pants). Here k(1) = 6, k(2) = 8, k(3) = 6 and k(4) = 4. So, the
+different kinds of pants are 6 × 8 × 6 × 4 = 1152 in number.
+Let’s consider one more example.
+Example 1: Suppose we want to choose two persons from a party consisting of 35
+members as president and vice-president. In how many ways can this be done?
+Solution: Here, Subtask 1 is ‘choosing a president’. This can be done in 35 ways.
+Subtask 2 is ‘choosing a vice-president’. For each choice of president, we can choose
+the vice-president in 34 ways. Therefore, the total number of ways in which Subtasks
+1 and 2 can be done is 35 × 34 = 1190.
+***
+There is another fundamental principle called the addition principle. This is applied
+in situations like the following one:
+138
+
+Suppose that a task consists of performing exactly one subtask from among a
+collection of disjoint (mutually exclusive) subtasks, say, Subtask 1, Subtask 2,….,
+Subtask k. (i.e., the task is performed if either Subtask 1 is performed, or Subtask
+2,…, or Subtask k is performed.) Further, suppose that Subtask i can be performed in
+ni ways, i = 1,2,…, k. Then, the number of ways in which the task can be performed is
+the sum n1+n2+…+nk.
+
+Combinatorics – An
+Introduction
+
+Let us consider an example of its application.
+Example 2: There are three political parties, P1, P2 and P3. The party P1 has 4
+members, P2 has 5 members and P3 has 6 members in an assembly. Suppose we want
+to select two persons, both from the same party, to become president and vicepresident. In how many ways can this be done?
+Solution: From P1, we can do the task in 4 × 3 = 12 ways, using the multiplication
+principle. From P2, it can be done in 5 × 4 = 20 ways. From P3 it can be done in 6 × 5
+= 30 ways. So, by the addition principle, the number of ways of doing the task is
+12 + 20 + 30 = 62.
+***
+
+Though both these principles seem simple, quite a number of combinatorial
+enumerations can be done with them. For instance, what we see from Example 2 is
+that the addition principle helps us to count all possible arrangements grouped into
+mutually exclusive and exhaustive classes.
+Why don’t you try a few exercises that involve the use of these principles now?
+E1)
+
+Give a situation related to computing in which the addition principle is used,
+and one in which the multiplication principle is used.
+
+E2)
+
+Find the number of words of length 4, meaningful or not, made with the letters
+a,b,…, j.
+
+E3)
+
+If n couples are at a dance, in how many ways can the men and women be
+paired for a single dance?
+
+E4)
+
+How many integers between 100 and 999 consist of distinct even digits?
+
+E5)
+
+Consider all the numbers between 100 and 999 that have distinct digits. How
+many of them are odd?
+
+Let us now consider certain arrangements of objects, in which the order in which they
+are arranged matters.
+
+1.3 PERMUTATIONS
+Suppose we have 15 books that we want to arrange on a shelf. How many ways are
+there of doing it? Using the multiplication principle, you would say 15 × 14 × 13 × ….. 2 × 1 = 15!
+
+n! denotes ‘n factorial’,
+which means
+n × (n − 1) × . × 2 × 1
+for any n∈N.)
+
+Each of these arrangements of the books is a permutation of the books. Let us define
+this term formally.
+Definition: An arrangement of a set of n objects in a given order is called a
+permutation of the objects (taken altogether at a time).
+
+139
+
+Basic Combinatorics
+
+An ordered arrangement of the n objects, taking r at a time, (where r ≤ n) is called a
+permutation of the n objects taking r at a time. The total number of such
+permutations is denoted by P(n,r).
+As an example, let us consider picking out books, three at a time, from the shelf of 15
+books. The first book can be chosen in 15 ways, the next in 14 ways, and the third in
+13 ways. So the multiplication principle tells us that the total number of permutations
+of the 15 books taken 3 at a time is P(15,3) = 15 × 14 × 13.
+
+Other notations used for
+P(n,r) are nPr,
+
+Prn , nPr.
+
+Again, consider the permutations of a,b,c,d, taken 2 at a time. These are ab, ba, ac, ca,
+ad, da, bc, cb, bd, db, cd, dc. (Note that ab and ba are considered different even though
+they consist of the same two objects.) Or, we can argue combinatorically as above:
+The first letter can be chosen in 4 ways, and then the next letter can be chosen. We
+can list out all the cases in 3 ways. So, the total number of permutations are P(4,2) = 4
+× 3 = 12.
+Now, is there a formula for finding the value of P(n,r)? This is what the following
+theorem tells us.
+Theorem 1: The number of permutations of n objects, taken r at a time, where 0 ≤ r ≤
+n!
+n, is given by P(n,r) =
+(n − r)!
+Consider r boxes arranged in a line. Choose one object out of n and place it in the first
+box. This can be done in n ways. Then from the remaining (n−1) objects choose one
+and place it in the second box. The first two boxes can be filled in n(n − 1) ways. We
+continue this operation till the rth box is filled. So, by the multiplication principle, the
+total number of ways of doing this is n(n − 1) (n − 2) …(n − r+1).
+P(n,r) = n(n −1)…(n−r+1).
+= n(n −1)…( (n − r + 1)( (n − r)( (n − r − 1)…3.2.1
+= (n −r)…( (n − r − 1) …3.2.1
+= n!/(n − r)!
+
+We define 0! = 1
+
+Proof: In particular, Theorem 1 tells us that the number of permutation of n objects,
+taken all at a time, is given by
+
+P(n,n) = n!
+and P(n, 0) = 1
+
+∀n∈N.
+
+So, for example, by Theorem 1 we can find
+P(6,4) = 6.5.4.3 = 6!/(6 − 4)! And P(6,0) = 1.
+Why don’t you try some exercises now?
+
+140
+
+E6)
+
+If m and n are positive integers, show that (m+n)! ≥ m! + n!.
+
+E7)
+
+How many 3-digit numbers can be formed from the 6 digits 2,3,5,7,8,9 if
+repetitions are not allowed? How many of these numbers are less than 400?
+How many are even?
+
+E8)
+
+How many ways are there to rank n candidates for the job of chief engineer? In
+how many rankings will Ms. Sheela be in the second place.
+
+In defining the concept of permutation we assumed that the objects were
+distinguishable. What does this mean, and what happens if we remove this
+assumption? Let’s see.
+
+Combinatorics – An
+Introduction
+
+1.3.1 Permutation of Objects Not Necessarily Distinct
+We have shown that there are P(n,r) ways to choose r objects from a set of n distinct
+objects and arrange them in linear order. Here we consider the same problem with
+the relaxed condition that some of the objects in the collection may not be
+distinguishable.
+For example, we consider permutations of the letters of the word DISTINCT. Here
+there are 8 letters of which 2 are I, 2 are T, and three are 4 other different letters. To
+count the permutations in such a situation, we have the following result.
+Theorem 2: Suppose there are n objects classified into k distinct types, with m1
+identical objects of the first type, m2 identical objects of the second type,…, and mk
+identical objects of the kth type, where m1+m2+...+mk = n. Then the number of distinct
+arrangements of these n objects, denoted by P(n; m1, m2,..mk) is
+
+n1
+.
+m1!m 2!...m k!
+
+Proof: Let x be the number of such permutations. If the objects of Type i are
+considered distinct, then they can be arranged amongst themselves in m1! ways, where
+i = 1,2,…, k. Therefore, by the multiplication principle, the total number of
+permutations of these n distinct objects, taken all at a time, is xm1!m2!…mk!.
+But this is precisely n! when there are n distinct objects.
+Hence, xm1!m2!…mk! = n!, that is, x = n!/m1!m2!…mk!
+So for example, this result tells us that the number of distinct 8 letter words, not
+necessarily meaningful, that we can make from the letter of the word “DISTINCT” is
+
+8!
+= 14.
+2!2!1!1!1!1!
+Here are some related exercises.
+E9)
+
+How many permutations are there of the letters, taken all at a time, of the words
+(i) ASSESSES, (ii) PATTIVEERANPATTI?
+
+E10) How many licence plates can be made if each should have 3 letters of the
+English alphabet with no letter repeated? What will be the answer if the letters
+can be repeated?
+So far, we have considered permutations of objects as linear arrangements of objects;
+this means that we visualize arrangements of objects in a line. But there is a variant in
+which the objects are arranged along the circumference of a circle. Let us consider
+that now.
+
+1.3.2 Circular Permutation
+Consider an arrangement of 4 objects, a,b,c,d as in Fig. 1. We observe the objects
+in the clockwise direction. On the circumference there is no preferred origin, and
+hence the permutations abcd, bcda, cdab, dabc will look exactly alike. So, each
+linear
+
+141
+
+Basic Combinatorics
+
+d
+
+a
+
+d
+
+b
+
+c
+
+a
+
+b
+
+c
+Fig. 1
+
+permutation, when treated as a circular permutation, is repeated 4 times. Similarly, if n
+objects are placed in a circular arrangement, each linear arrangement is repeated n
+times. So, if we consider all the n! permutations of n things, each circular permutation
+will be indistinguishable from the (n−1) others obtained by the process of rotating the
+objects in the same order. So the number of distinct circular permutations will be n!/n
+= (n−1)!. Thus, we have shown that the number of circular permutations of n
+things, taken all at a time, is (n−1)!.
+Let us consider some examples.
+Example 3: In how many distinct ways is it possible to seat eight persons at a round
+table?
+Solution: Clearly we need the number of circular permutations of 8 things. Hence the
+answer is 7! = 5040.
+***
+Example 4: In the preceding question, what would be the answer if a certain pair
+among the eight persons
+(i)
+
+must not sit in adjacent seats?
+
+(ii) must sit in adjacent seats
+Solution: To answer (i), let us first solve (ii) from 7! we have to subtract the number
+of cases in which the pair of persons sit together. If we consider the pair as forming
+one unit, then we have the circular permutations of 7 objects, which is (7−1)! (Note
+that this is the answer for (ii).) But even as a unit they can be arranged in two ways.
+Hence the required answer is 2(6!). Now to answer (i), we must subtract these
+possibilities from the total number of ways of seating all the people. This is 7!−2(6!)
+= 3600.
+***
+Example 5: Suppose there are five married couples and they (10 people) are made to
+sit about a round table so that neither two men nor two women sit together. Find the
+number of such circular arrangements.
+Solution: Five females can be made to sit about a round table in (5−1)! = 4! ways.
+One male can be seated in between two females. There are five positions, and hence
+they can be made to sit in 5! ways. By the multiplication principle, the total number of
+ways of such seating arrangements is 4! × 5! = 2880.
+***
+142
+
+Example 6: Consider seven people seated about a round table. How many circular
+arrangements are possible if at least one of them will not have the same neighbours in
+any two arrangements?
+
+Combinatorics – An
+Introduction
+
+Solution: The two distinct arrangements in Fig. 2 show that each has the same
+neighbours.
+a
+
+a
+
+b
+
+e
+
+e
+
+b
+
+c
+
+d
+
+d
+
+e
+
+Fig. 2
+
+Hence, the total number of circular arrangements = (7-1)! ×
+
+1
+= 360.
+2
+
+***
+You may try the following exercise.
+E11) If there are 7 men and 5 women, how many circular arrangements are possible
+in which women do not sit adjacent to each other?
+Permutations apply to ordered arrangement of objects. What happens if order does not
+matter? Let’s see.
+
+1.4 COMBINATIONS
+Let’s begin by considering a situation where we want to choose a committee of 3
+faculty members from a group of seven faculty members. In how many distinct ways
+can this be done? Here order doesn’t matter, because choosing F1, F2, F3 is the same
+as choosing F2, F1, F3, and so on. (Here Fi denotes the ith faculty member.) So, for
+every choice of members, to avoid repetition, we have to divide by 3!. Thus, the
+number would be
+
+7×6×5
+7!
+=
+.
+3!
+3!4!
+
+More generally, suppose there are n distinct objects and we want to select r objects,
+where r ≤ n, where the order of the objects in the selection does not matter. This is
+called a combination of n things taken r at a time. The number of ways of doing this
+
+n
+is represented C , n C , C n ,   or C(n,r). We will use the notation C(n, r), in
+n r
+r
+r  
+r 
+
+conformity with the notation P(n,r) for permutations. We read C(n,r) as ‘n choose r’to
+emphasize the fact that only choice is involved but not ordering.
+In the example that we started the section with, you saw that the number of
+combinations was 7!/3!4!, i.e., P(7,3) . In fact, this relationship between C(n, r) and
+3!
+P(n, r) is true in general. We have the following result.
+Theorem 3: The number of combinations of n objects, taken r at a time, where
+0 ≤ r ≤ n is given by
+143
+
+Basic Combinatorics
+
+C(n,r) =
+
+P(n,r)
+n!
+=
+r!
+(n-r)!r!
+
+Proof: C(n, r) counts the number of ways of choosing r out of n distinct objects
+without regard to the order. Any one of these choices is simply a subset of r objects of
+the set of n objects we have. Such a set can be ordered in r! ways. Thus, to each
+combination, there corresponds r! permutations. Hence there are r! times as many
+permutations as there are combinations. Hence, by the multiplication principle, we get
+P(n, r) = r! C(n,r)
+Therefore, C(n,r) =
+
+P(n,r)
+n!
+=
+r!
+(n-r)!r!
+
+Using Theorem 3, we can very quickly find out, for instance, how many ways thereare
+20!
+of choosing 2 rooms out of 20 rooms offered. This is C(20,2) =
+= 190.
+18!2!
+Now, to find C(20,2), I took a short cut. I cancelled 18! From the number and
+20 × 19
+denominator. In practice, I only needed to calculate
+. This practice is useful,
+2 ×1
+n(n − 1)...r factors
+in general, i.e., we use the identity C(n, r) =
+for calculations. In
+r(r −1)...r factors
+fact, sometimes r is much larger than n − r, in which case we cancel r!. This is also
+what the following result suggests.
+
+Theorem 4: C(n, r) = C(n, n − r), for 0 ≤ r ≤ n, n∈N.
+Proof 1: For every choice of r things from n things, there uniquely corresponds a
+choice of n − r things from those n objects, which are the unchosen objects. This oneto-one correspondence shows that these numbers must be the same. This proves the
+theorem.
+n!
+n! =
+= C(n, n − r).
+Proof 2: C(n, r) =
+(n − r)!r! (n − r)!(n − n − r)!
+Because of these two theorems we have, for instance,
+
+C(n, n) = C(n, 0) = P(n, 0) = 1. C(n, 1), and = C(n, n−1) = P(n, 1) = n.
+The numbers C(n, r) are also called the binomial coefficients as they occur as the
+coefficients of xr in the expansion of (1+x)n in ascending powers of x, as you will see
+in Sec. 1.5. At this stage, let us consider some examples involving C(n, r).
+Example 7: Evaluate C(6, 2), C(7, 4) and C(9, 3).
+Solution: C(6, 2) =
+
+6.5
+7.6.5
+9.8.7
+= 15,C(7, 4) =
+= 35, and C(9, 3) =
+= 84.
+2.1
+3.2.1
+3.2.1
+
+Example 8: Find the number of distinct sets of 5 cards that can be dealt from a deck
+of 52 cards.
+Solution: The order in which the cards are dealt is not important. So, the required
+52! 52 × 51× 50 × 49 × 48
+number is C(52, 5) =
+=
+= 2,598,960.
+5 × 4 × 3 × 2 ×1
+5!47!
+
+144
+
+Example 9: Suppose a valid computer password consists of 8 characters, the first of
+which is the digit 1, 3 or 5. The rest of the 7 characters are either English alphabets or
+a digit. How many different passwords are possible?
+
+Combinatorics – An
+Introduction
+
+Solution: Firstly, the initial character can be chosen in C(3, 1) ways. Now, there are
+26 alphabets and 10 digits to choose the rest of the characters from, and repetition is
+allowed. So, the total number of possibilities for these characters is (26+10)7.
+Therefore, by the multiplication principle, the number of passwords possible are
+C(3, 1).367.
+Here are some exercises now.
+E12) At a certain office, a committee consisting of one male and one female worker
+is to be constituted from among 12 men and 15 women workers. In how many
+distinct ways can this be done?
+E13) In how many ways can a prize winner choose any 3 CDs from the ‘Ten Best’
+list?
+E14) How many different 7-person committees can be formed, each containing 3
+women and 4 men, from a set of 20 women and 30 men?
+So far we have been considering combinations of distinct objects. Let us now look at
+combinations in which repetitions are allowed. We start with considering the
+following situations.
+Suppose five friends stop at a sweet shop where each of them has one of the
+following: a samosa, a dosa, and a vada. The order of consumption does not matter.
+How many different purchases are possible?
+Let s, t, and d represent samosa, dosa, vada, respectively. In the following table we
+have listed some possible ways of purchasing these. For instance, the second row
+represents the possibility that all 5 friends order only dosas.
+s
+
+d
+
+v
+
+x
+
+x
+
+xxx
+
+xxx
+
+xxxx
+
+xx
+
+These orders can also be represented by x’s and ’s. For instance, the first row can
+be written as xxxxx. So, any order will consist of five x’s and two ’s.
+Conversely, any sequence of five x’s and two ’s represents an order. So, there is a 1to-1 correspondence between the orders placed and sequences of five x’s and two ’s.
+But the number of such sequences is just the number of distinct ways of placing 2’s
+in 7 possible places. This is C(7,2).
+More generally, if we wish to select with repetition, r out of n distinct objects, we are
+considering all arrangements of r of one kind (say x’s) and n − 1 of the other kind (say
+’s) (because (n − 1) ’s are needed to separate n types).
+The following result gives us the total number of such possibilities.
+Theorem 5: Let n and r be natural numbers. Then the number of solutions in natural
+numbers, to the equation x1 + x2 + … + xn = r, is C(n + r − 1,r). Equivalently, the
+145
+
+Basic Combinatorics
+
+number of ways to choose r objects from a collection of n objects, with repetition
+allowed, is C(n + r − 1,r).
+Proof: Any string will consist of r objects and n − 1 bars, to denote the n different
+categories in which these objects can fall. So, it will be a string of length n + r − 1,
+containing exactly r stars and n − 1 bars. The total number of such strings is the
+number of ways we can position (n − 1) bars in r different places. This is C(n + r −
+1,r).
+Now we demonstrate how such strings correspond to solution of the equation x1 + …+
+xn = r.
+n − 1 bars in the string divide the string into n substrings of stars. The number of stars
+in these n substrings are the values of x1, x2,…, xn. Since there are r stars altogether,
+the sum is r. Therefore, is a one-to-one correspondence between the strings and the
+solutions, and the theorem is proved.
+Let us consider examples of the use of this result.
+Example 10: In how many ways can a prize winner choose three books from a list of
+10 best sellers, if repeats are allowed?
+
+Solution: Here, note that a person can choose all three books to be the same title.
+Applying Theorem 5, the solution is C(10 + 3 − 1, 3) = C(12, 3) = 220.
+***
+Example 11: Determine the number of integer solutions to the equation
+x1 + x2 + x3 + x4 = 7, where xi ≥ 0 for all i = 1,2,3,4.
+Solution: The solution of the equation corresponds to a selection, with repetition, of
+size 7 from a collection of size 4. Hence, there are C(4 + 7 − 1, 7) = 120 solutions.
+(n = 4, r = 7 in Theorem 5.)
+***
+So, from this sub-section, we see the equivalence of the following:
+(a) The number of integer solutions of the equation x1 + x2 + … + xn = r, xi ≥ 0, 1≤ i
+≤ n.
+(b) The number of selections, with repetition, of size r from a collection of size n.
+(c) The number of ways r identical objects can be distributed among n distinct
+containers.
+Why don’t you try some exercises now?
+E15) A student in a college hostel is allowed four fruits per day. There are 6
+different types of fruits from which she can choose what she wants. For how
+many days can a student make a different selection?
+E16) An urn contains 15 balls, 8 of which are red and 7 are black. In how many
+ways can:
+i) 5 balls be chosen so that all 5 are red?
+ii) 7 balls be chosen so that at least 5 are red?
+
+146
+
+In this section we have considered choosing r objects, with repetition, out of n objects,
+regardless of order. What happens when order comes into the picture? Let’s consider
+an example.
+
+Combinatorics – An
+Introduction
+
+Example 12: A box contains 3 red, 3 blue and 4 white socks. In how many ways can
+8 socks be pulled out of the box, one at a time, if order is important?
+Solution: Let us first see what happens if order isn’t important. In this case we count
+the number of solutions of r+b+w = 8, 0 ≤ r, b ≤ 3, 0 ≤ w ≤ 4. To apply Theorem 5,
+we write x = 3 − r, y = 3 − b, z = 4 − 10.
+Then we have x+y+z = 10 − 8 = 2, and the number of solutions this has is C(3+2−1,2)
+= 6.
+These 6 solutions are (1, 0, 1) (0, 1, 1), (1, 1, 0), (2, 0, 0), (0, 2, 0), (0, 0, 2). So, the
+corresponding solutions for (r, b, w) are
+(3, 3, 2), (2, 3, 3), (3, 2, 3), (3, 1, 4), (2, 2, 4), (1, 3, 4).
+Now, we consider order. From Theorem 2 we know that the number of ways of
+8!
+pulling out 3 red, 3 blue and 2 white socks in some order is
+. This number would
+3!3!2!
+be the same if you had 2 red, 3 blue and 3 white socks, etc. By this reasoning and
+considering all different orderings, the number of possibilities is
+
+***
+
+What we see, via Example 13, is that if we want to find the number of possibilities
+wherein order matters and repetition is allowed them:
+Step 1: Find the possibilities when order doesn’t matter, using Theorem 5;
+Step 2: Use Theorem 2, to find the possibilities for each solution obtained in Step 1.
+Why don’t you try and exercise now?
+E17) How many 6-letter words, not necessarily meaningful can be formed from the
+letters of CARACAS?
+Let us now consider why C(n,r) shows up as the coefficients in the binomial
+expansions.
+
+1.5 BINOMIAL COEFFICIENTS
+You must be familiar with expressions like a+b, p+q, x+y, all consisting of two terms.
+This is why they are called binomials. You also know that a binomial expansion
+refers to the expansion of a positive integral power of such a binomial. For instance,
+(a+b)5 = a5 + 5a4b + 10a3b2 + 10a2b3 + 5ab4 + b5 is a binomial expansion. Consider
+coefficients 1, 5, 10, 10, 5, 1 of this expansion. In particular, let us consider the
+coefficient 10, of a3b2 in this expansion. We can get this term by selecting a from 3 of
+the binomials and b from the remaining 2 binomials in the product (a+b) (a+b) (a+b)
+(a+b) (a+b). Now, a can be chosen in C(5, 3) ways, i.e., 10 ways. This is the way each
+coefficient arises in the expansion.
+147
+
+Basic Combinatorics
+
+The same argument can be extended to get the coefficients of arbn−r in the expansion
+of (a+b)n. From the n factors in (a+b)n, we have to select r for a and the remaining (n
+− r) for b. This can be done in C(n, r) ways. Thus, the coefficient of arbn−r in the
+expansion of (a+b)n is C(n, r).
+In view of the fact that C(n, r) = C(n, n − r), the coefficients of arbn−r and an−rbr will be
+the same. r can only take the values 0, 1, 2, …, n. We also see that C(n, 0) = C(n, n) =
+1 are the coefficients of an and bn. Hence we have established the binomial expansion.
+(a+b)n = an + C(n, 1) an−1b + C(n, 2)an−2b2 + … + C(n, r) an−rbr + … + bn.
+In analogy with ‘binomial’, which is a sum of two symbols, we have ‘multinomial’
+which is a sum of two or more (though finite) distinct symbols. Multinomial
+expansion refers to the expansion of a positive integral power of a multinomial.
+Specifically we will consider the expansion of (a1 +a2 + …+ am)n. For the expansion
+we can use the same technique as we use for the binomial expansion. We consider the
+nth power of the multinomial as the product of n factors, each of which is the same
+multinomial. Every term in the expansion can be obtained by picking one symbol
+from each factor and multiplying them. Clearly, any term will be of the form
+a r1 a r2 ...a rm where r1, r2,…, are non-negative integers such that r1+r2+…+ rm = n. Such
+1
+
+2
+
+m
+
+a term is obtained by selecting a1 from r1 factors, a2 from r2 factors from among the
+remaining (n−r1) factors, and so on. This can be done in
+C(n,r1). C(n−r1,r2).C(n−r1−r2, r3)…C(n−r1−r2−…−rm−1, rm) ways.
+n!
+.
+If you simplify this expression, it will reduce to
+r1!r2 !...rm!
+So, we see that the multinomial expansion is
+
+where the summation is over all non-negative integers r1, r2,…, rm adding to n.
+n
+The cofficient of a1r1 a1r1 ...a rm
+m in the expansion of (a1 + a 2 +...+a m ) is
+
+n!
+, and
+r!r
+1 2!rm!
+
+is called a multinomial coefficient, in analogy with the binomial coefficient. Werepresent
+this by C(n; r1, r2, …, rm). This is also represented by many authors as
+
+For instance, the coefficient of x2y2z2t2u2 in the expansion of (x + y + z + t + u)10 is
+C(10; 2, 2, 2, 2, 2) = 10!/(2!)5.
+Let us see an example involving such coefficients.
+Example 13: What is the sum of the coefficients of all the terms in the expansion of
+(a+b+c)7?
+7!
+Solution: The required answer is 
+, where the summation is over all nonr!s!t!
+7! r s t
+a b c for a = b
+negative integers r, s, t adding to n. But it is also the value of 
+r!s!t!
+= c = 1.
+So the answer is (1 + 1 + 1)7 = 37.
+
+***
+148
+
+This short detour was just to give you an idea of the way in which the Cs and Ps can
+be extended. Let us now consider some identities involving the binomial coefficients.
+We first consider Pascal’s formula.
+
+Combinatorics – An
+Introduction
+
+Theorem 6 (Pascal’s formula): For all positive integers n and all r such that
+1 ≤ r ≤ n, C(n + 1, r) = C(n, r) + C(n, r − 1).
+Proof 1: The left hand side of the identity represents the number of ways of choosing
+r things out of (n+1) distinct things. Suppose we select an object from the (n+1) things
+and mark it. Then the number of combinations in which the marked thing is absent is
+C(n, r), as we then choose r things out of the unmarked n things. The number of
+combinations in which the marked thing is present is C(n, r−1), as we have to choose
+(r − 1), things out of the unmarked things, and attach the marked thing to it to make r
+things. Pascal’s formula now follows from the fact that the sum of the last two
+numbers mentioned must be equal to C(n+1, r).
+
+n!
+n!
++
+(n-r)!r! (n-r+1)!(r-1)!
+
+Proof : 2 C(n,r) + C(n, r-1) =
+
+=
+
+n!
+(n-r + 1 + r) = C(n+1,r).
+r!(n + 1 - r)!
+
+Pascal’s formula gives us a recursive way to calculate the binomial coefficients, sinceit
+tells us the value of C(n, r) in terms of binomial coefficients with a smaller value of n.
+Note that we use the fact that C(n, 0) = 1 for all n ≥ 0 to start the recursion, since
+Theorem 6 only applies for 1 ≤ r ≤ n. This recursive approach allows us to form
+Pascal’s triangle, the display of the binomial coefficients shown in Fig.4.
+The nth row of Pascal’s triangle gives the binomial coefficients C(n, r) as r goes from0
+(at the left) to n (at the right); the top row is Row D. This consists of just the number1,
+for the case n = 0. The left and right borders are all 1’s, reflecting the fact that C(n,0)
+= C(n, n) = 1 for all n. Each entry in the interior of the Pascal’s triangle is the sum of
+the two entries immediately above it to the left and right. We call this property the
+Pascal property. For example, each 15 in Row 6 (remember that we are starting the
+count of rows with 0) is the sum of the 10 and the 5 immediately above it.
+1
+1
+
+1
+1
+
+2
+
+1
+1
+1
+
+1
+1
+1
+1
+1
+
+10
+11
+
+36
+45
+
+55
+
+15
+
+35
+
+35
+
+56
+
+330
+
+126
+
+252
+
+462
+
+6
+
+56
+
+126
+
+1
+
+21
+
+70
+
+210
+
+1
+5
+
+20
+
+84
+
+165
+
+10
+
+15
+
+120
+
+4
+
+10
+
+28
+
+1
+
+6
+
+21
+
+8
+
+3
+
+4
+
+6
+7
+
+9
+
+3
+
+5
+
+1
+
+1
+
+7
+
+1
+
+28
+84
+
+210
+
+462
+
+1
+
+8
+36
+
+120
+
+330
+
+1
+9
+
+45
+
+165
+
+1
+10
+
+55
+
+1
+11
+
+1
+
+Fig. 3: Pascal’s triangle
+
+The diagonals of Pascal’s triangle are also interesting. The diagonal parallel to the left
+edge but moved one unit to the right reads (from the top down) 1, 2, 3, 4, 5,…,
+reflecting the fact that C(n, 1) = n for n ≥ 1. The next diagonal to the right, reading 1,
+149
+
+Basic Combinatorics
+
+3, 6, 10, 15,…, reflects the fact that differences increase by 1 as we move down the
+diagonal.
+Let us now consider some identities involving binomial coefficients.
+Identity 1: C(n, 0) + C(n, 1) + C(n, 2) + … + C(n, n − 1) + C(n, n) = 2n
+By setting a = b = 1 in the binomial expansion of (a+b)n, we get this identity. In the
+context of sets, it tells us the number of distinct subset that can be formed from a set
+with n elements. Note that the number of subsets containing precisely r elements is
+C(n, r). Hence the total number of subsets is nr=0 C(n, r) = 2n , by the identity. So,
+this identity tells us that the number of distinct subsets of a set with n elements is
+2n.
+Identity 2: C(n, 0) − C(n, 1) + C(n, 2) − … + (−1)n C(n, n) = 0.
+We get this by setting a = 1, b = −1 in the expansion of (a+b)n.
+Now, adding the two identities, we get
+2  C(n, r) = 2n, i.e.,
+r even
+
+ C(n, r) = 2n−1
+r even
+
+Similarly subtracting the second identity from the first leads us to the equation
+ C(n, r) = 2n−1.
+r odd
+
+These two equations tell us that the number of subsets of a set of n elements with an
+even number of elements is equal to the number of subsets with an odd number of
+elements, both being 2n−1.
+Why don’t you try to prove some identities now?
+E18) Show that C(n, m) C(m, k) = C(n, k) C(n−k, m−k), 1 ≤ k ≤ m ≤ n.
+E19) Prove that C(k, k) + C(k + 1, k) + C(k + 2, k) + … + C(n, k) = C(n+1, k+1) for
+all natural numbers k ≤ n.
+Before ending this section, we just mention another extension of the definition of
+binomial coefficients. So far, we have defined C(n, r) for n ≥ r ≥ 0. We can extend this
+definition for any real number x, and any non-negative integer k, by
+
+C(x, k) =
+
+x(x-1)...(x-k+1)
+.
+k!
+
+This definition coincides with that of C(n, k), when n is a non-negative integer.
+So far, in this unit, we have considered various ways of counting different kinds of
+arrangements. These methods are, not surprisingly, helpful in finding the probability
+of an event. We shall now discuss this.
+
+1.6 COMBINATORIAL PROBABILITY
+Historically, counting problems have been closely associated with probability. The
+probability of getting at least 6 heads on 10 flips of a fair coin, the probability of
+finding a defective bulb in a sample of 25 bulbs if 5 percent of the bulbs from which
+the sample was drawn are defective  all these probabilities are essentially counting
+problems. In fact, Pascal’s triangle (Fig. 3) was developed by Pascal around 1650
+while analysing some gambling probabilities.
+150
+
+Let us start by recalling some basic facts about probability. An experiment is a
+clearly defined procedure that produces one of a given set of outcomes. The set of all
+outcomes is called the sample space of the experiment.
+
+Combinatorics – An
+Introduction
+
+For example, the experiment could be checking the weather to see if it is raining or
+not on a particular day. The sample space here would be {raining, not raining}.
+Given an experiment, we can often associate more than one sample space with it. For
+instance, suppose the experiment is the tossing of two coins.
+i) If the observer wants to record the number of tails observed as the outcomes, the
+sample space is {0, 1, 2}.
+ii) If the outcomes are the sequence of heads and tails observed, then the sample
+space is {HH, HT, TH, TT}.
+A subset of the sample space of an experiment is called an event. For example, for an
+experiment consisting of tossing 2 coins, with sample space {HH, HT, TH, TT}, the
+event that two heads do not show up is the subset {HT, TH, TT}.
+Suppose X is a sample space of an experiment with N out comes. Then, the events are
+all the 2N subsets of X. The empty set φ is called the impossible event, and the set X
+itself is called the sure event.
+Now, for the purpose of this course, we will assume that all the outcomes of an
+experiment are equally likely, that is, there is nothing to prefer one case over the
+other. For example, in the experiment of coin tossing, we assume that the coin is
+unbiased. This means that ‘head’ and ‘tail’ are equally likely in a toss. The toss itself
+is considered a random mechanism ensuring ‘equally likely’ outcomes. Of course,
+there are coins that are ‘loaded’, which means that one side of the coin may be heavier
+than the other. But such coins are excluded from our discussion. Also, in our
+discussions we shall always assume that our sample space is finite.
+Given this background, we have the following definition.
+
+n(A)
+.
+Definition: Then the probability of the event A, represented by P(A), is
+n(X)
+For instance, the probability that a card selected from a desk of 52 cards is a spade is
+13
+, because A is the set of 13 spades in the deck.
+52
+
+We represent the
+number of elements
+of a finite set A, i.e.,
+the cardinality of
+A, by n(A) orA.
+
+From the definition, we get the following statements:
+i)
+
+As n (φ) = 0, it follows that P(φ) = 0.
+
+ii)
+
+By definition, P(X) =
+
+n(X)
+=1.
+n(X)
+
+iii) If A and B are two events, then n(A∪B) = n(A) + n(B) − n(A∩B). Therefore,
+P(A∪B) = P(A)+P(B) − P(A∩B).
+iv) (Addition Theorem in Probability) : If A and B are two mutually exclusive
+events, then the probability of their union is the sum of the probabilities of A and
+B. i.e., if A∩B = φ, then P(A∪B) = P(A) + P(B).
+[This is a consequence of (i) and (iii) above.]
+v)
+
+Suppose A is an event. Then the probability of Ac (also denoted by A′), the event
+complementary to A, or the event ‘not A’ is 1 − P(A), i.e.,
+P(Ac) = 1 − P(A).
+151
+
+Basic Combinatorics
+
+The reason is that the events A and Ac are mutually exclusive and exhaustive,
+i.e., A∪Ac = X and P(A) + P(Ac) = 1.
+vi) (The generalised addition theorem) : If the events A1, A2,…,Am are pairwise
+disjoint (i.e., mutually exclusive), then P(U Ai ) =  P(Ai ).
+i
+
+i
+
+Let us consider some examples from combinatorial probability.
+Example 14: A die is rolled once. What are the probabilities of the following events?
+(i) getting an even number,
+(ii) getting at least 2,
+(iii) getting at most 2,
+(iv) getting at least 10.
+Solution: If we call the events A, B, C and D, then we have X = {1, 2, 3, 4, 5, 6},
+A = {2,4,6}, B = {2,3,4,5,6}, C = {1,2}, and D = φ.
+Hence, P(A) = 3/6, P(B) = 5/6, P(C) = 2/6, P(D) = 0.
+***
+Example 15: A coin is tossed n times. What is the probability of getting exactly r
+heads?
+Solution: If H and T represent head and tail, respectively, then X consists of
+sequences of length n that can be formed using only the letters H and T. Therefore,
+n(X) = 2n. The event A consists of those sequences in which there are precisely r Hs.
+So, n(A) = C(n, r). Hence, the required probability is C(n, r)/2n.
+***
+Example 16: Two dice, one red and one white, are rolled. What is the probability that
+the white die turns up a smaller number than the red die?
+Solution: If the number on the red die is x and that on the white die is y, then X
+consists of the 36 pairs (x, y), where x and y can be any integer from {1, 2, 3, 4, 5, 6}.
+For the event A, we need x < y. For x = 1, 2, 3, 4, 5, y can be x + 1, x+2,…, 6, i.e.,
+6 − x in number. Thus, by the addition principle,
+5
+
+n(A) =  (6 − x) = 5 + 4 + 3 + 2 + 1 = 15.
+x=1
+
+Hence, P(A) = 15/36 = 5/12.
+***
+Example 17: If a five-digit number is chosen at random, what is the probability that
+the product of the digits is 20?
+Solution: If X is the collection of all 5-digit numbers, then n(X) = 9.104 = 90000.
+Now, 20 can be factored in only two ways, viz., 1.1.1.4.5 and 1.1.2.2.5, as the product
+of five factors. Of course, these factors can be permuted to give all possible cases for
+A. The numbers 5, 4, 1, 1, 1 can be permuted in 5!/1!1!3! = 20 ways, and the numbers
+5, 2, 2, 1, 1 can be permuted in 5!/1!2!2! = 30 ways.
+So, n(A) = 20 + 30 = 50.
+152
+
+Combinatorics – An
+Introduction
+
+Hence, P(A) = 50/90000 = 1/1800.
+***
+Example 18: Suppose A and B are mutually exclusive events such that P(A) = 0.3 and
+P(B) = 0.4. What is the probability that
+i) A does not occur?
+ii) A or B occurs?
+iii) Either A or B does not occur?
+Solution:
+i) This is P(Ac) = 0.7.
+ii) This is P(A∪B) = 0.7.
+iii) This is P(Ac∪Bc) = P[(A∩B)c] = P(φc) = P(X) = 1
+***
+Try some exercises now.
+E20) A,B,C and D are four candidates for a chairperson’s post. Suppose that A is
+twice as likely to be elected as B, B is thrice as likely as C, and C and D are
+equally likely to be elected. What is the probability of election of each
+candidate?
+E21) In a ten-question true-false exam, a student must achieve six correct answers
+to pass. If she selects her answers randomly, what is the probability that she
+will pass?
+There are several other methods for solving combinatorial problems. These will be
+taken up in the next two units. Let us now summarise what we have covered in this
+unit.
+
+1.7 SUMMARY
+In this unit we have discussed some counting techniques. Specifically, we have
+covered the following points.
+1.
+2.
+
+The multiplication and addition principles for counting the number of ways in
+which a task can be completed.
+n!
+, and its
+What a permutation is, the derivation of the formula P(n,r) =
+(n − r)!
+application for solving problems.
+
+3.
+
+The number of distinct arrangement of n objects of which m1 are of Type 1, m2
+are of Type 2,…, mk are of Type k, where m1, m2 +…,mk = n, is
+P(n; m1, m2,…,mk) =
+
+n!
+.
+m1!m 2 !...m k !
+
+4.
+
+What a circular permutation is, and that the number of such permutations of n
+objects, taken all at a time, is (n−1)!
+
+5.
+
+What a combination is, the derivation of the formula
+153
+
+Basic Combinatorics
+
+C(n,r) =
+
+P(n, r)
+n!
+=
+, and its application for solving problems.
+r!
+(n − r)r!
+
+6.
+
+The proof and applications of the fact that the number of ways of choosing r
+objects from a collection of n objects, with repetition allowed, is C(n+r−1,r).
+
+7.
+
+Why C(n,r) is called a binomial coefficients, and its analogue for multinomials.
+
+8.
+
+Some identities involving C(n,r), including Pascal’s formula
+C(n+1,r) = C(n,r) + C(n,r−1).
+
+9.
+
+The use of counting techniques for finding some discrete probabilities.
+
+1.8 SOLUTIONS/ ANSWERS
+E1)
+
+For instance, both principles are used to find the number of ways in which 17
+files are stored if there are 3 storage locations of 1000 K each and 10 files are of
+100 K, 5 of 200 K and 2 of 500 K.
+
+E2)
+
+Here we apply the multiplication principle. Each letter has 10 possibilities.
+Therefore, the total number of words is 104.
+Suppose we number the men as 1, 2, 3,…, n. Then the first man can be paired
+with any of the n women, the second can be paired with any from the remaining
+(n − 1) women, and so on. Hence, the number of ways of pairing is n(n − 1)…
+1 = n!.
+
+E3)
+
+E4) By the multiplication principle, the number of integers between 100 and 999
+with all digits even is 4.5.5 = 100 (Note that the first digit cannot be zero, but
+the second and third digits can be 0.)
+E5)
+
+For a number to be odd the last digit should be odd. So, the last position can be
+filled up in 5 ways. If the middle position is filled up by 0, then the first position
+can be filled up in 8 ways. Thus the number of odd numbers with 0 in the
+middle position and all digits distinct is 40, by the multiplication principle.
+If the middle position is filled up by a digit other than 0, then this can be done
+in 8 ways. Then the first position can be filled up in 7 ways. So, the number of
+odd numbers with all digits distinct with the middle digit not zero is 5.8.7 =
+280.
+Thus, by the addition principle the answer is 40 + 280 = 320.
+
+E6)
+
+(m + n)! = (m + n) (m + n − 1) … (m + 1) m!.
+ (m + n)! − m! = ≥ mn + n! ≥ m! [n! + mn − 1]
+ (m + n)! − m! – n! ≥ n! (m! − 1) + m! (mn − 1) ≥ 0.
+
+E7) Without repetitions, the number is P(6, 3). For the number to be less than 400,
+the leftmost digit can only be 2 or 3. The rest of the digits can be filled in P(5,
+2) ways. So, the total number of numbers less than 400 will be 2P(5, 2).
+Similarly, the total number of even numbers is 3P(5, 2).
+Note: That the addition principle has been used in both cases.
+E8)
+
+154
+
+A ranking is an ordering of the n candidates. This can be done in P(n,n) = n!
+ways. The total number of rankings in which Sheela is in 2nd place in P(n − 1, n
+− 1) = (n − 1)!
+
+E9)
+
+In the word ‘ASSESSES’, we have A once, E twice, and S five times. Thus the number of permutations
+is8!/1!2!5! = 168.
+In the word ‘PATTIVEERANPATTI’, R, N and V occur once, P, E and I occur twice, A thrice and T four times.
+Thus the required number of permutations is 16!/1!1!1!2!2!2!3!4! = 9.10.
+
+E10) By the multiplication principle, the answer is 26.25.24 if the letters cannot be repeated, and 26.26.26 if the
+letterscan be repeated.
+E11) The seven men can be seated first. This can be done in 6! ways. The women can sit in between two men. There
+are seven such places. So, the women can sit in P(7,5) ways. Hence the answer is 6! × P(7,5).
+E12) This can be done in C(12, 1).C(15,1) ways, i.e., 180 ways.
+E13) This can be done in C(10, 3) ways, i.e., 120 ways.
+E14) The total number of possibilities is C(20,3).C(30,4) = 31,241,700.
+E15) Applying Theorem 5, we get C(9, 4) = 126 days.
+E16) i) Be careful! This is not an application of Theorem 5. This is only the number of ways of choosing 5 balls out
+of 8 balls, i.e. C(8, 5).
+ii) First pick 5 red balls, in C(8,5) ways. Then pick the remaining 2 arbitrarily. These 2 can be chosen in
+C(2+2−1, 2) = 3 ways. So, the total number of ways is C(8, 5) × 3.
+E17) We have 2Cs, 3As, 1R and 1S. If order is not a concern, we consider the solutions of
+c+a+r+s = 6, 0 ≤ c ≤ 2, 0 ≤ a ≤ 3, 0 ≤ r, s ≤ 1.
+We convert this to the equivalent problem
+x+y+z+t = 1, where x = 2 − c, y = 3 − a, r = 1 − z, s = 1 − t, The number of solutions of this
+is C(4 + 1 − 1, 1) = 4.
+There are (1, 0, 0, 0), (0, 1, 0, 0), (0, 0, 1, 0) and (0, 0, 0, 1).
+The corresponding solutions in (c, a, r, s) are (1, 3, 1, 1), (2, 2, 1, 1), (2, 3, 0, 1),
+(2, 3, 1, 0).
+Now order becomes important to us. Applying Theorem 2, the required number is
+
+E18) The left side counts the ways to select a group of m people chosen from a set of
+n people and then select a subset of k leaders, say, of this group of m. This can
+also be done by selecting the subset of k leaders from the set of n people first,
+and then selecting the remaining m − k members of the group from the
+remaining n − k people. The number of ways in which this can be done is given
+on the right hand side. Therefore, the identity.
+You can also prove this algebraically.
+
+155
+
+Basic Combinatorics
+
+E19) One can prove this by induction on the variable n. The base case is trivial, since
+if n = 0, then k = 0 as well, and the equation reduces to C(0, 0) = C(1, 1), which
+is true. The induction step is proved by Pascal’s formula and the induction
+hypothesis.
+E20) The relative weightages of A, B, C and D are 6.3, 1, 1, respectively. So, P(A) =
+6
+3
+1
+, P(B) = , P(C) = = P(D).
+11
+11
+11
+E21) The answer is same as the probability of getting at least 6 heads in 10 tosses of
+a true coin. Hence, the answer is
+C(10, 6)/210 + C(10, 7)/210 + C(10, 8)/210 + C(10, 9)/210 + C(10, 10)/210
+= (210 + 120 + 45 + 10 + 1)/1024 = 193/512.
+
+156
+
+Some More Counting
+Principles
+
+Solution: Let U be all possible distributions of r distinct objects into five boxes. Let
+Ai denote the set of possible distributions with the ith box being empty.
+i) Then the required number of distributions with at least one empty box is A1
+∪ A 2 ∪ ... ∪ A5 . We have N = 5r. Also, Ai = (5 − 1)r , the number of
+distributions in which the objects are put into one of the remaining four boxes.
+Similarly, Ai ∩ A j = (5 − 2)r , and so forth. Thus, by the corollary above, we
+have
+A1 ∪ ... ∪ A5 = S1 − S2 + S3 − S4 + S5
+= C(5,1)4r − C(5,2)3r + C(5,3)2r − C(5,4)1r + 0
+_
+
+_
+
+_
+
+ii) A1 ∩ A 2 ∩ ... ∩ A5 = 5r − C(5,1)4r + C(5,2)3r − C(5,3)2r + C(5,4)1r , by
+Theorem 7.
+***
+Example 9: How many solutions are there to the equation x + y + z + w = 20, where
+x, y, z, w are positive integers such that x ≤ 6, y ≤ 7, z ≤ 8, w ≤ 9?
+Solution: To use inclusion-exclusion, we let the objects be the solutions (in positive
+integers) of the given equation. A solution is in A1 if x > 6, in A2 if y > 7, in A3 if
+_
+
+_
+
+_
+
+_
+
+z > 8, and in A4 if w > 9. Then what we need is A1∩ A2 ∩ A3 ∩ A 4 .
+Now, to find the total number of positive solutions to the given equation, we rewrite
+it as x1+y1+z1+w1 = 16, where x1 = x+1, y1 = y+1, z1 = z+1, w1 = w+1. Any nonnegative solution of this equation will be a positive solution of the given equation.
+So, the number of positive solutions is
+N = C(16+4−1, 16) (see Example 11 of Block 3, Unit 1, Page 146)
+= C(19, 3).
+Similarly, A1 = C(13,3), A2 = C(12,3), A3 = C(11,3),
+A4 = C(10,3), A1 ∩ A2 = C(6,3), A2 ∩ A3 = C(5,3), and so on. Note that for a
+solution to be in 3 or more Ai s, the sum of the respective variables would exceed 20,
+which is not possible. By inclusion- exclusion, we obtain
+_
+
+_
+
+_
+
+_
+
+A1 ∩ A2 ∩ A3 ∩ A4 = C(19, 3) − C(13, 3) − C(12, 3) − C(11, 3) − C(10, 3)
++ C(6, 3) + C(5, 3) + C(4, 3) + C(4, 3) + C(3, 3) = 217.
+***
+Now you may try the following exercises.
+E10) Prove the corollary to Theorem 7.
+E11) How many numbers from 0 to 999 are not divisible by either 5 or 7?
+Let us now consider applications of the inclusion-exclusion principle to some specific
+problem types.
+
+163
+
+Recurrences
+
+E3)
+
+Which of the following sequences are admissible?
+i) (+,−,+,−,+,+,−,−)
+ii) (+,−,+,−,+,−,+,−)
+iii) (+,+,−,−,−,+,−,+)
+
+E4)
+E5)
+
+Is the statement “An admissible sequence has to start with a plus and end with a
+minus” true? Explain your answer.
+Consider the problem discussed in the introduction. Let an be the number of
+binary sequences of length n that do not contain consecutive zeros. Show that
+an=an-1 + an-2 for n ≥ 3.
+
+You will have noticed that in each of the three problems, we have been able to express the
+nth term of a sequence in terms of one or more previous terms and a function of n. This
+gives you a method to compute the terms of the sequence accurately, given enough time.
+At times, if the relation between the terms is in a reasonably nice form, we can even
+“solve” the recurrence, that is, express the nth term as a function of n. You will learn how
+to solve these three recurrences in the next 2 units.
+Let us now consider some more recurrent problems.
+
+3.3
+
+MORE RECURRENCES
+
+You have been exposed to some famous recurrent problems in the previous section. In this
+section, we shall take another look at setting up recurrence relations for combinational
+problems. You will find that in trying to determine recurrence, we are really attempting
+to describe the counting inductively. In most cases, you will see that the recurrence
+relation leads to an alternate method of solution, although the methods themselves will not
+be dealt in this Unit.
+Example 6: Let Cn be the number of comparisons needed to sort a list of n integers. Let
+us find a recurrence relation for Cn. We first find the minimum of the n elements. This will
+be the first element of the list. We compare the first two elements and find the minimum
+among the two. We compare this minimum with the third element, and so on. For finding
+the minimum of n elements we have to make n−1 comparisons. For example, if we want
+to find the minimum of the list 3, 2, 4, 1, 5, we will have to make 4 comparisons as shown
+in Fig.4.
+
+Fig. 4: Comparisons for finding the minimum of 3,2,4,1,5
+
+After making the minimum element the first element of the list we can sort the
+remaining n−1 elements with Cn−1 comparisons and append it after first element. So,
+n−1 + Cn−1 comparisons are required to sort a list of n elements.
+
+176
+
+3.4
+
+DIVIDE AND CONQUER TECHNIQUE TO SOLVE
+RECURRENCES
+
+Often, to solve a problem, we can partition the problem into smaller problems,
+find solutions to the smaller problems and then combine the solutions to find a
+solution forthe whole. We can repeatedly partition the problem till we reach a stage
+where we cansolve the problem quite easily. This approach is called the divide-andconquer approach. Let us start with an example. Throughout this section we
+will assume that n = 2k.
+Example 10: Consider the problem of finding the maximum and minimum of a
+list ofn numbers. Here let us assume that n = 2k for some k to make things simpler
+for us.
+Let an be the number of comparisons required for finding the maximum and
+minimum of a list of n numbers.
+We can partition the list into two lists of size n 2 each. The maximum and
+minimum of each of the list can be found using an 2 comparisons.
+We can then compare minimum (resp. maximum) of the lists to get the minimum
+(resp. maximum) of the list, i.e., we will need two more comparisons. So,
+a n = 2a n 2 + 2 for n ≥ 2. a 2 = 2. We leave it as an exercise for you to check
+
+3
+n − 2, when n is power of 2.
+2
+
+that a n =
+
+E14) Check that a n =
+
+3
+n − 2 is a solution to the recurrence a n = 2a n + 2
+2
+2
+
+where n is a power of 2 and a2 = 1.
+Definition: We call a recurrence a divide-and-conquer recurrence if it has the form
+
+a n = ba n + d(n)
+a
+
+where a > 1, b > 1 are integers and d(n) is a function of n.
+Such a relation results when we split a problem of size n into b sub problems of
+size
+
+n
+. After solving each of the sub problems we may need d(n) steps to get the
+a
+
+solutiona
+to the original problem of size n. In Example 10, we splitted a problem of size n
+into 2 sub problems of size
+
+n
+each and we needed 2 more steps to get the answer
+2
+
+to the original problem. So, a = b = 2 and d(n) = 2 in this example.
+Example 11: In a tennis tournament, each entrant plays a match in the first
+round. Next, all winners from the first round play a second-round match. Winners
+continueto move on to the next round, until finally only one player is left as the
+tournamentwinner. Assuming that tournaments always involve n = 2k players, for
+some k, find the recurrence relation for the number rounds in a tournaments of n
+players.
+
+179
+
+Recurrences
+
+3.6
+
+SOLUTIONS/ANSWERS
+
+E1)
+
+It is easy to check that f1 = 1 = f2. With α = 1+ 5 , β = 1 − 5 , we observe
+
+2
+
+2
+
+that αβ are solutions to the equation x 2 − x − 1 = 0. ∴ α2 = α + 1, β 2 = β+1.
+If n ≥ 3,
+
+5(f n −1 +f n − 2 ) = (α n −1 − β n − 2 )
+= α n − 2 (α +1) − β n − 2 (β+1)
+= α n − 2 α 2 − β n − 2β 2
+= α n − β n = 5f n ,
+as desired.
+n ≥ 2, 2Tn-1 + 1 = 2(2n-1 ─1) + 1 = 2n –1 = Tn, verifying
+
+E2)
+
+Observe that T1 = 1. If
+the formula.
+
+E3)
+
+1) and 2) are admissible. If we drop the last three terms from 3), we get
+(+,+,−,−,−) which has two pluses and three minuses. So, 3) is not admissible.
+
+E4)
+
+Yes, this is true. If an admissible sequence starts with a −, the sequence got by
+removing all the terms except the first one has more minuses (1 minus) than
+pluses (0 Plus). Suppose an admissible sequence ends in a plus. The sequence
+we get by removing a plus has more pluses than minuses. If we put back the
+plus, the sequence will still have more pluses than minuses. But, an admissible
+sequence must have equal number of pluses and minuses.
+
+E5)
+
+Consider any string of length n. The last bit of the sequence is either 0 or 1. If
+the last bit is 0, the previous bit must be 1. So, it can be obtained by adding
+‘10’ to a string of length n − 2 . (Note that 2 consecutive 1s are allowed!)
+If the last bit is 1, this can be obtained by adding 1 to a string of length n−1.
+∴an = an−1+ an−2
+Note that, an satisfies the same recurrence satisfied by the Fibonacci sequence.
+We have f 1 = 1, f̣ 2 = 1, but a1=2, a2=3.
+
+E6)
+
+E7)
+
+It is easy to see that C1 = 0. If n ≥ 2,
+1
+1
+n (n −1) = Cn, as desired.
+Cn-1 + n ─ 1 = (n −1) (n − 2) + n ─ 1 =
+2
+2
+Observe that s0 = 1. If n ≥ 1, 2sn-1 = 2.2n-1 = 2n = sn, verifying the formula.
+
+E8)
+
+We note that
+
+E9)
+
+We check that d1 = 0, d 2 = 1 . To verify the first order recurrence, note
+
+b1 = 1. If n ≥ 2, nb n-1 = n. (n − 1)!n! = b n , as required.
+
+that if n ≥ 2,
+n −1
+
+(−1)i 
+n
+nd n −1 + (−1) n = n (n − 1)!
+ + ( − 1)
+i
+!
+i =0
+
+
+i
+n −1
+ ( −1) (−1) n 
+n
+−
+= n! 
+ + ( − 1)
+i
+!
+n
+!
+ i =0
+
+
+( −1)i
+= dn
+i!
+i =0
+
+n −1
+
+= n! 
+
+as desired.
+
+182
+
+Rcurrences
+
+E14)
+
+When n = 2,
+
+3
+n − 2 = 1 . Let us suppose n = 2k. Let us apply induction on k.
+2
+
+Suppose it is true for k, say m = 2k, then
+
+a m = 2a m + 2
+2
+
+ 2m
+
+− 2 + 2
+= 2
+4
+
+
+3m
+=
+=4+2
+2
+= 3 m−2
+2
+Thus it is true for k+1.
+n
+
+E15) Divide n by 2, find i 2 , and square it. Thus a n = a n + 1 . The algorithm is
+2
+
+desirable since log2(n) grows more slowly than n.
+E16)
+
+Divide n by 2. Find the product of n
+
+integers and the product of last n
+
+2
+Multiply two products obtained. Thus a n = 2a n + 1 .
+
+2
+
+integers
+
+2
+
+E17) Let n be a power of 2. Let the two n-digit numbers b A and B. We split each of
+these numbers into two
+
+n
+digit parts:
+2
+
+n
+
+A = A1 10 2 + A 2 and
+n
+
+B = B1 10 2 + B2 (like 1235 = 12 × 100 + 35)
+Then A.B = A1 B1 10n + A1 B2 10n 2 + A 2 B1 10n 2 + A 2 B1 10n 2 A 2 B2
+We need only to make three
+
+n
+digit multiplications, A1. B1 , A 2 . B2 and
+2
+
+(A1 +A 2 ). (B1 +B2 ) to determine A. B since
+A1 . B2 + B2 . A1 = (A1 + A2). (B1 + B2) – A1 . B1 – A2 . B2
+Actually (A1 + A2) or (B1 + B2) may be  n + 1 digit numbers but this slight
+
+
+2
+
+
+
+
+variation does not effect the general magnitude of our solution (like 1295 = 12 × 102
++ 95). If a n represents the number of digit-times multiplications needed to
+Multiply two n-digit numbers by the above procedure, this gives the recurrence
+relation a n = 3a n
+2
+3
+
+a n proportional to n log 2 = n1.6 – a substantial improvement over n2.
+
+184
+
+UNIT 4 PARTITIONS AND DISTRIBUTIONS
+
+Partitions and
+Distributions
+
+Structure
+4.0
+4.1
+4.2
+4.3
+
+Introduction
+Objectives
+Integer Partitions
+Distributions
+4.3.1
+4.3.2
+4.3.3
+4.3.4
+
+Distinguishable Objects into Distinguishable Containers
+Distinguishable Objects into Indistinguishable Containers
+Indistinguishable Objects into Distinguishable Containers
+Indistinguishable Objects into Indistinguishable Containers
+
+4.4
+4.5
+
+Summary
+Solutions /Answers
+
+4.0
+
+INTRODUCTION
+
+In the last two units we have exposed you to a variety of combinatorial techniques. In
+this unit we look at a few more ways of counting arrangements of objects when order
+matters, and when it doesn’t.
+In Sec. 4.2, we focus on the ways in which a natural number can be written as a sum
+of natural numbers. In the process you will be introduced to a useful ‘recurrence
+relation’.
+We link this, in Sec. 4.3, with the different ways in which n objects can be distributed
+among m containers. As you will see, there are four broad possible kinds of
+distributions. In each case, we consider ways of counting all the distributions. In the
+process you will also be introduced to Stirling numbers.
+You should attempt the assignment based on the course after studying this unit, and
+this block.
+
+4.1
+
+OBJECTIVES
+
+After going through this unit, you should be able to:
+• define an integer partition, and count the number of partitions of an integer;
+• count the number of ways of distributing distinguishable and indistinguishable
+objects, respectively, into distinguishable containers;
+• count the number of ways of distributing distinguishable and indistinguishable
+objects, respectively, into indistinguishable containers.
+
+4.2
+
+INTEGER PARTITIONS
+
+Suppose a detergent manufacturer wants to promote her product by giving a gift token
+with 100 bars out of the whole stock. The lucky persons among her customers will get
+the gift. Some of them may buy more than one bar at a time with the hope of getting
+gifts. In how many ways can the 100 gift tokens get distributed? One possible way is
+that all the 100 bars with gifts are bought by 100 different customers. We can indicate
+this situation by 100 = 1 + 1 + ... + 1. Another possibility is that somebody buys 2
+100 times
+
+bars, somebody else buys 3 bars, and the remaining 95 bars are distributed amongst
+95 different people. We are not interested in the order in which the bars are bought.
+
+185
+
+Basic Combinatorics
+
+Forexample, here we are not interested in whether the person who bought 2 bars
+boughtthem before the person who bought the 3 bars. So, we can indicate this
+1 + 1 + ... 1
+situation by 100 =
++2+3. More generally, we can indicate each way of
+95 times
+distributing the 100 bars with gifts by 100 = p1 + p2 + p2 + … + pk, where the pi are
+natural numbers, and p1 ≤ p2 ≤ … ≤ pk. Each way of writing 100 in this form is
+called an integer partition of 100. More generally, we have the following
+definition.
+Definition: Any representation of n∈N as a sum of positive integers in nonincreasing order is called a partition (or integer partition) of n. Each such partition
+can be written in the form n = p1 + p2 + …+ pk, where p1 ≤ p2 ≤ … ≤ pk.
+Here, p1, p2,…, pk are called the parts of the partition, and the number of parts of the
+partition is k.
+While we chose 100 in the example above, it is really a huge number in the context of
+integer partitions. Let us consider a smaller number, say 5. How many partitions of 5
+can you think of? There are 7 altogether, namely, 5, 1+4, 2+3, 1+1+3, 1+2+2,
+1+1+1+2 and 1+1+1+1+1.
+
+In books, you will often
+come across the notation
+p(n) for the number of
+partitions of n.
+
+If we represent the number of partitions of the integer n by Pn, we have shown
+that P5 = 7. These partitions have 1, 2, 2, 3, 3, 4 and 5 parts, respectively.
+If we represent the number of partitions of n with exactly k parts by Pnk , then we
+have P51 = P52 = P53 = P54 = P55 = 1 .
+To check your understanding of the material so far, try the following exercises.
+E1)
+
+Write down all the partitions of 7. Also find P74 and P75 .
+
+E2)
+
+Let us consider the situation of the detergent manufacturer again. Suppose she
+only wants to distribute 10 gift tokens in 5 specific sales districts, where the
+sales are low. What is the number of ways of doing this?
+
+You may wonder if you’ve found all the partitions in E2. One way to check is by
+finding out the required number in terms of partitions of smaller numbers, which may
+be easier to find. One such relation between partitions of n and n+1, n+2, etc. is given
+in the following theorem.
+k
+Theorem 1: Pn1 + Pn2 + ... + Pnk = Pn+k
+, Pn1 = Pnn = 1 , for1 ≤ k ≤ n, that is, the number
+of partitions of n with at most k parts is the same as the number of partitions of
+n+k with exactly k parts.
+
+Before we begin the proof of this theorem, let us consider an example. Let us take
+n =4, k = 3. According to Theorem 1, we must have P41 + P42 + P43 = P73 . Note that
+
+P41 + P42 + P43 is the total number of partitions of 4 with 1, 2 or 3 parts, i.e., the number
+of partitions with at most 3 parts. There is one partition of 4 with one part, 4 = 4.
+Let us write this as a 3-tuple, (4, 0, 0), adding two more zeroes since we are
+considering partitions with at most 3 parts. If we add 1 to all the entries of this
+3-tuple, we get (4+1,0+1,0+1) = (5,1,1) and (1+1+5 is a partition of 7 with
+three parts. Similarly, consider the partition 4 = 1+3 of 4 into two parts. Again,
+we can write this as (1, 3, 0).
+
+186
+
+Now, if we add 1 to each of the entries, we get (2, 4, 1) and 1+2+4 is a partition of 7
+into three parts. Conversely, if we take the partition 7 = 1 + 3 +3 of 7 into three parts,
+write it as (1, 3, 3) and subtract 1 from all the entries, we get (0, 2, 2) which
+corresponds to the partition 4 = 2+2 of 4 into 2 parts. In this way, we can match every
+partition of 4 with at most 3 parts with a partition of 7 with exactly 3 parts, and vice
+versa. This is the basic idea behind our proof of Theorem 1, which we now give.
+
+Partitions and
+Distributions
+
+Proof of Theorem 1: The cases Pn1 = 1 = Pnn follow from the definition.
+We will prove the general formula now. Let M be the set of partitions of n having k or
+less parts. We can consider each partition belonging to M as a k-tuple after adding as
+many zeroes as necessary. Define the mapping
+
+(p1 , p 2 , ..., p m , 0, 0, ..., 0) .... (p1 +1, p 2 +1, ..., p m , + 1, 1, ..., 1), m ≤ k
+(k − m) times
+
+(k − m) times
+
+from M into the set M′ of partitions of n+k into exactly k parts. This mapping is
+bijective, since
+i) two distinct k-tuples in M are mapped onto two distinct k-tuples in M′;
+ii) every k-tuple in M′ is the image of a k-tuple of M. This is because, if
+(p1, p2,…,pk) is a partition of n+k with k parts, then it is the image of
+(p1 − 1, p2 − 1,…, pk − 1) under the mapping above.
+k
+Therefore, M = Pn1 + ... + Pnk = M' = Pn+k
+, and the theorem is proved.
+
+Note that Pnk = 0 if n < k, since there is no partition of n with k parts if n < k. Also,
+
+Pnn = Pn1 = 1
+The formula in Theorem 1 is an identity which allows us to find Pnr from values of
+
+Pmk , where m < n, k ≤ r. This is why it is also called a recurrence relation for Pnk .
+Theorem 1 is every useful. For instance, to verify your count in E2, you can use it
+because P105 = P51 + P52 + ... + P55 = 7.
+From Theorem 1, the Pnk s may be calculated recursively as shown in Table 1.
+Table 1 : Pnk for 1 ≤ n, k ≤ 6
+k
+
+n
+1
+2
+3
+4
+5
+6
+
+1
+
+2
+
+3
+
+4
+
+5
+
+6
+
+1
+1
+1
+1
+1
+1
+
+0
+1
+1
+2
+2
+3
+
+0
+0
+1
+1
+2
+3
+
+0
+0
+0
+1
+1
+2
+
+0
+0
+0
+0
+1
+1
+
+0
+0
+0
+0
+0
+1
+
+In this table, the second entry in the row corresponding to n = 4 is P42 . By Theorem 1,
+
+P42 = P21 = P22 , which is the sum of the entries in the row corresponding to n = 2
+Similarly, P63 is the sum of the entries in the row corresponding to n = 3.
+
+187
+
+Basic Combinatorics
+
+Now, here is an exercise for you.
+E3)
+
+Use Table 1 to find the values of P7k ,1 ≤ k ≤ 6.
+
+The partition of a number n into k parts also tells us how n objects can be distributed
+among k boxes. We will now consider all possibilities of such distributions.
+
+4.3
+
+DISTRIBUTIONS
+
+By a distribution we mean a way of placing several objects into a number of
+containers. For example, consider the distribution of 6 balls among 3 boxes. We may
+have all 6 balls of different shapes, sizes and colours, i.e., they are all distinguishable.
+Or, all the balls could be exactly the same, i.e., they are all indistinguishable.
+Similarly, all 3 boxes may look different, or all 3 could be exactly the same. So, we
+see that there are 4 possibilities here.
+In fact, we have the following possibilities for any set of n objects and m boxes.
+Case 1: The objects are distinguishable, and so are the boxes;
+Case 2: The objects are distinguishable and the boxes are indistinguishable;
+Case 3: The objects are indistinguishable and the boxes are distinguishable;
+Case 4: The objects are indistinguishable, and so are the boxes.
+You may be surprised to know that in each of the cases the number of such
+distributions is different. In fact, the distribution problem is to count all possible
+distributions in any of these situations, or in a combination of these cases.
+A general guideline for modelling a ‘distribution problem’ is that a distribution of
+distinct objects corresponds to an arrangement, and a distribution of identical objects
+corresponds to a selection. Let us consider examples of each of the four cases given
+above.
+(a) There are twenty students and four colleges. In how many ways can the
+studentsbe accommodated in the four colleges?
+In this example the students, as well as the colleges, are clearly distinguishable.
+This comes under Case (1).
+(b) Suppose we want to group 100 students into 10 groups of 10 each for the purpose
+of a medical examination. In how many ways can this be done?
+Here the groups are indistinguishable, though the students in them are
+distinguishable. Hence, this falls under Case (2).
+(c) An employer wants to distribute 100 one-rupee notes among 6 employees. What
+is the number of ways of doing this?
+Though the one-rupee notes can be distinguished by their distinct numbers, we
+don’t consider them to be distinguishable as far as their use is concerned. The
+employees, of course, are distinguishable. Hence, this is an example of Case (3).
+(d) There are 1000 one-rupee notes. In how many ways can they be bundled into 20
+bundles?
+
+188
+
+As before, the rupee notes are treated as indistinguishable. Clearly, the bundles
+are, by themselves, not distinguishable. Only the quantity in each may vary.
+Hence, this falls under Case (4).
+
+Partitions and
+Distributions
+
+Let us consider each case in some detail now.
+
+4.3.1 Distinguishable Objects into Distinguishable Containers
+Let us consider the example (A) above. Since any number of students can be put in a
+college, there are 20 × 20 × 20 × 20 possibilities, by the multiplication principle.
+More generally, suppose we are distributing n objects into m containers, both being
+distinguishable. Then the total number of such distributions is nm.
+Let us look at an example.
+Example 1: Show that the number of words of length n on an alphabet of m letters is
+mn.
+Solution: The m letters of the alphabet can be used any number of times in a word of
+n letters. The word can be considered as n ordered boxes, each holding a letter from
+the alphabet. The boxes become distinguishable because they are ‘ordered’. The
+letters of the alphabet are clearly distinguishable. So, the number of ways of doing
+this is mn.
+***
+
+Several people are confused while solving the problem above. They tend to take the m
+letters as the containers instead! Let’s consider another example.
+Example 2: Suppose we have a set S with n objects. An m-sample from this set S is
+an ordered arrangement of m letters taken from S, with replacement at every draw, in
+m draws. Find the number of m-samples from an n-element set.
+Solution: Every m-sample is a word of length m from the ‘alphabet’ S containing n
+letters. Hence, the required number is nm.
+***
+Now here are some exercises for you to solve.
+E4) Find the number of three-letter words that can be formed using the letters of the
+English alphabet. How many of them end in x? How many of them have a
+vowel in the middle position?
+E5) How many five-digit numbers are even? How many five-digit numbers are
+composed of only odd digits?
+E6) There are 4 women and 5 men. A committee of three, a president, a vicepresident, and a secretary, has to be formed from them. In how many ways can
+this be done if
+i) the vice-president should be a woman?
+ii) exactly one out of the vice-president and the secretary should be a woman?
+iii) there is at least one woman in the committee?
+Now suppose, we want to find the number of distributions of n distinguishable objects
+into m distinguishable containers, with the extra condition that no container should
+189
+
+Basic Combinatorics
+
+contain more than one object. It is clear that this requires m ≥ n. Then we can get all
+these arrangements by first choosing n containers to contain exactly one object, and
+then permuting the n objects among the chosen containers. This can be done in
+C(m, n). n! = P(m, n) ways.
+So, we have proved the following result.
+Theorem 2: The number of ways of distributing n distinguishable objects into m
+distinguishable containers such that no container contains more than one object is
+P(m, n).
+For example, the cardinality of the set of 5-digit numbers with all digits being distinct
+odd numbers is P (5,5). This is because the possible digits are 1, 3, 5, 7, 9.
+Why don’t you try an exercise now?
+E7)
+
+Find the number of m-letter words with distinct letters, all taken from an
+alphabet with n letters, where n ≥ m. Is this different from the number of
+injective mappings from an m-element set into an n-element set, where
+n ≥ m? Give reasons for your answer.
+
+Let us now consider the second type of distribution.
+
+4.3.2 Distinguishable Objects into Indistinguishable Containers
+Here we shall find the number of ways of distributing n distinguishable objects into m
+indistinguishable containers. For this, we first find the number when exactly k of the
+containers are occupied. This brings us to Stirling numbers of the second kind, named
+after James Stirling (1692-1770).
+Suppose n ≥ m. The number of distributions of n distinguishable objects into m
+indistinguishable containers such that no container is empty is represented by Smn .
+This number is called the Stirling number of the second kind. As you can see, this is
+also the number of partitions of a set of n objects into m classes.
+Definition: For natural numbers n and m, the Stirling number of the second kind,
+Smn , is the number of partitions of an n-element set into exactly m parts.
+Note that:
+
+i)
+
+Smn = 0 if n < m, for, if the number of containers exceeds the number of
+objects,then it is impossible to have all the containers non-empty.
+
+ii)
+
+Snn = 1, since there is only one way of putting n distinguishable objects in
+nindistinguishable boxes so that no box is empty.
+
+iii) S1n = 1.
+Now, we shall use the inclusion exclusion principle to find the value of Smn .
+Theorem 3: Smn =
+
+1 m
+ ( − 1)k C(m, m − k)(m − k)n , n ≥ m.
+m! k=0
+
+Proof: If the m classes are distinguishable, the number of partitions is the same as the
+number of functions from an n-element set onto an m-element set. As the classes are
+distinguishable here, we have to divide this number by m!. The result follows from
+Theorem 8, Block 3 Unit 2.
+190
+
+For example, to obtain the Stirling number, S35 , we know that the number of functions
+from a 5-element set onto a three-element set is 150. So, by Theorem 3, S35 = 150/3!
+
+Partitions and
+Distributions
+
+= 25.
+Remark: You may be wondering how we have jumped straightaway to the Stirling
+numbers of the second kind. What about the first kind? We won’t be using them in
+any way here. However, for a the sake of completeness, we define Stirling numbers
+of the first kind, s(n, k), as follows.
+For a positive integer n, and 0 ≤ k ≤ n, s(n, k) is the coefficient of xk in the expansion
+of the multinomial x(x −1)(x −2)…(x − n + 1).
+Getting back to Smn , you may feel that the formula in Theorem 3 is a little
+cumbersome. Sometimes, the following recurrence relation for Smn may be more
+useful.
+Theorem 4: If 1 < m ≤ n, then Smn+1 = Smn −1 + mSnm .
+Proof: Let us take n+1 objects, mark one of them, and consider the distribution of
+these n+1 objects into m indistinguishable containers. Then we have 2 situations.
+Case (1) (The marked object is placed in one container without any other objects.): In
+this case, the remaining n objects can be placed in (m − 1) containers in Smn −1 ways.
+Case (2) (The marked object is placed with at least one more object in a container.):
+In this case, we can first distribute the n unmarked objects into m containers, and then
+put the marked objects m to one of these m containers. So, the number of such
+partitions is m Smn .
+Therefore, by the addition principle, we get Smn+1 = Smn −1 + mSmn .
+There is a generalisation of Theorem 4 that is of independent interest, which we now
+state.
+n
+
+Theorem 5: Smn+1 =
+
+ C(n, k). S
+
+m −1
+k
+
+k=0
+
+Proof: Let us mark one object in a set of (n+1) objects. Suppose the marked object is
+present in a box with (n − k + 1) elements, where m − 1 ≤ k ≤ n. Then we can choose
+n − k more objects to go with the marked object in C(n, n − k) ways. The remaining k
+objects can be distributed into (m − 1)n boxes in Smk −1 ways. So the number of ways of
+distributing the n − k objects is C(n, n − k) Smk −1 . The result now follows from the
+addition principle by allowing k to vary from 0 to n.
+Let us see some examples of the use of these recurrences.
+Example 3: Calculate S32 and S24 .
+Solution: Using Theorem 4, we get S32 + S12 = 2 × S22 = 1 + 2 ×1 = 3, and
+
+S24 + S13 = 2S32 = 1 + 2 × 3 = 7.
+***
+Now let us find what we had started with in this sub-section.
+191
+
+Basic Combinatorics
+
+Theorem 6: The number of ways of distributing n distinguishable objects into m
+indistinguishable containers is S1n + S2n + ... + Smn , where n ≥ m. (Note that here
+we donot insist that no container is empty.)
+Proof: When we distribute n distinguishable objects into m indistinguishable
+containers there are m cases. Case (k) is that exactly k containers are non-empty.
+Here k varies from 1 to m. The number of distributions in Case (k) is Sk n. The result
+now follows from the addition principle.
+Let us consider an example.
+Example 4: In how many ways can 20 students be grouped into 3 groups?
+Solution: Theorem 6 says that this can be done in S120 + S220 + S320 ways.
+Now, using Theorem 3, we get this number to be
+
+1+
+
+1 2
+1 3
+(−1) k C(2,2 − K)(2 − K) 20 +
+(−1) k C(3,3 − K)(3 − K) 20
+
+
+2 k=0
+6 k=0
+
+= 581,130,734.
+Try some exercises now.
+***
+E8)
+
+Find the number of surjective functions from an n-element set onto an melement set.
+
+E9)
+
+Find the number of ways of placing n people in n − 1 rooms, no room being
+empty.
+
+Let us now consider the third possibility for distributing objects into containers.
+
+4.3.3 Indistinguishable Objects into Distinguishable Containers
+Suppose there are n indistinguishable objects and m distinguishable containers. As the
+objects are indistinguishable, the distributions depend only on the number of objects
+in each container. As the containers are distinguishable, they can be assumed to be
+arranged in a line. Hence, the number of distributions is the number of ways of writing
+the number n as the sum x1+x2+…+xm, where the xi’s are non-negative integers.
+We have covered this situation in Theorem 5 of Block 3 Unit 1. Over there we
+have shownthat the number of distributions of n indistinguishable objects into
+m distinguishable containers is C (m+n−1, n). In particular, the number of nonnegative integral solutions of the equation x1+x2+…+xm = n is C (m+n−1, n).
+Incidentally, we note that the number of distributions of n indistinguishable objects
+into m distinguishable containers with at most one object per container is C (m, n).
+Let us consider an example.
+Example 5: How many distinct solutions are there of x + y + z + w = 10
+i) in non-negative integers?
+ii) in positive integers?
+192
+
+Solution:
+
+Partitions and
+Distributions
+
+i) From the result quoted above, the answer is C(4 + 10 − 1, 10) = 286.
+ii) We want x, y, z, w to be positive. Hence, we can write them respectively as X+1,
+Y+1, Z+1, W+1, where X, Y, Z, W are non-negative. Hence we want the number of
+non-negative solutions of the equation X+1+Y+1+Z+1+W+1=10, i.e., X+Y+Z+W= 6.
+The answer, now, is C (4 + 6 − 1, 6) = 84.
+Try some exercises now.
+E10) Show that the number of positive solutions of the equation x1+x2+…+ xn = m is
+C(m − 1, m − n).
+E11) In how many ways can an employer distribute 100 one-rupee notes among 6
+employees so that each gets at least one note?
+Let us now consider the fourth case.
+
+4.3.4 Indistinguishable Objects into Indistinguishable Containers
+Suppose there are n indistinguishable objects and m indistinguishable containers. Any
+distribution is determined purely by an unordered m-tuple of non-negative integers
+with sum n. This is equivalent to the number of increasing sequences of length m of
+non-negative integers with sum n. But this is precisely the number of partitions of the
+integer n with at most m parts, viz., Pn1 + Pn2 + ... + Pnm = Pmn+m , from Theorem 1 of
+this unit.
+Let us consider an example of this case.
+Example 6: In how many ways can 20 identical books be placed in 4 identical boxes?
+1
+2
+3
+4
+4
+Solution: The answer is P20
++ P20
++ P20
++ P 20
+= P 24
+
+Why don’t you try some exercises now?
+
+E12) In how many ways can 1000 one-rupee notes be bundled into a maximum of 20
+bundles?
+E13) A car manufacture has 5 service centres in a city. 10 identical cars were served
+in these centres for a particular mechanical defect. In how many ways could
+the cars have been distributed at the various centres?
+With this we have come to the end of this unit. Let us take a quick look at what we
+have studied in this unit.
+
+4.4
+
+SUMMARY
+
+1.
+
+A partition of n∈N into k parts is x1+x2+…+xk = n, where x1 ≤ x2 ≤ …≤ xk. Pn
+is the set of all partitions of n, and P kn is the set of all partitions into exactly k
+parts.
+
+2.
+
+The proof and applications of the recurrence relation,
+k
+Pn1 + Pn2 + ... + Pnk + = Pn+k
+, + Pn1 = Pnn = 1, 1 ≤ k ≤ n.
+
+3.
+
+The number of ways of distributing n objects into m containers is :
+193
+
+Basic Combinatorics
+
+i) nm, if the objects and containers are distinguishable.
+ii) m i
+Sn , if the objects are distinguishable but the containers are not.
+
+
+i=1
+
+(Here Sij is a Stirling number of the second kind).
+iii) C(m+n−1, n) if the objects are not distinguishable but the containers are
+distinguishable.
+iv)
+
+m
+, if neither the objects nor the containers are distinguishable.
+Pn+m
+
+Further, in (i) above, if there is an extra requirement that each container contain at
+most one object, then the number of distributions is P(m, n). Again, in (iii) above,
+with the same extra requirement, the number of distributions is C(m, n).
+
+4.5
+
+SOLUTIONS /ANSWERS
+
+E1)
+
+In the table below we give all possible partitions of 7.
+Table 2
+
+Number of
+parts
+1
+2
+3
+4
+5
+6
+7
+
+Partitions
+
+7
+1+6, 2+5, 3+4
+1+1+5, 1+2+4, 1+3+3, 2+2+3
+1+1+1+4, 1+1+2+3, 1+2+2+2
+1+1+1+1+3, 1+1+1+2+2
+1+1+1+1+1+2
+1+1+1+1+1+1+1
+
+From the table, we see that P74 = 3, P75 = 2.
+E2)
+
+5
+The required number is P10
+= 7.
+
+E3)
+
+P71 = 1 = P77 .
+P72 = P51 + P52 = 1 + 2 = 3 , from Table 1.
+P73 = P14 + P 42 + P34 = 1 + 2 + 1 = 4, from Table 1.
+Similarly, P74 = P31 + P32 + P33 + P34 = 3, P75 = P21 + P22 = 2 and P76 = P11 .
+
+E4)
+
+The 26 letters are distinguishable objects. We have to fill then in three
+distinguishable containers, viz., the first, second, and third positions of a threelettered word. The solution is 263.
+If the last letter is to be x, the number is only 262 × 1.
+If the middle letter is a vowel, then by the multiplication principle, the answer is
+26 × 5 × 26.
+
+E5)
+
+The total number of even numbers is 9 × 10 × 10 × 10 × 5 = 45,000, since the
+last digit can only by 0, 2, 4, 6 or 8.
+The number of 5-digit numbers composed of only odd digits (i.e., 1, 3, 5, 7, 9)
+is clearly 55 = 3125.
+
+194
+
+E6)
+
+i) We can choose a woman for vice-president in 4 ways. To fill the
+remaining 2 positions we can select 2 from the remaining 8 persons in 8 × 7 =
+56 ways. Hence, the required number is 4 × 56 = 224.
+
+Partitions and
+Distributions
+
+ii) If the vice-president is a woman (chosen in 4 ways), others can be selected in
+5 × 4 = 20 ways. Similarly, if the woman is a secretary, the others can be
+chosen in 20 ways. Hence, by the addition and multiplication principles, the
+answer is 20 × 4 + 20 × 4 = 160.
+iii) Without any restriction, three can be selected in 9 × 8 × 7 = 504 ways. If no
+woman is to be selected, then it can be done in 5 × 4 × 3 = 60 ways. What we
+need is the complement of this. Thus, the required answer is 504 − 60 = 444.
+E7)
+
+If the alphabet has n letters, the m-letter words with distinct letters can be
+formed in n (n − 1)(n − 2)…(n − m + 1) = P(n, m) ways.
+Now, in an injective mapping, images of distinct elements should be distinct
+(see Unit 1). There are n possible images for the first element of the m-set, n−1
+possible images for the second, and so on. Hence, the number of such
+mappings is also P(n, m).
+
+E8)
+
+Suppose N = {1, 2, …,n} and M = {1, 2, …, m}. If f is an onto function from
+N to M, then the inverse images, f−1(1), f−1(2),…, f−1(k) constitute a partition of
+N into m classes. The number of ways in which this can be done is Smn, where
+the order of partition is immaterial. But, in functions, the order cannot be
+ignored. So, the distribution can be done in m!. Smnways.
+
+E9)
+
+This is Snn−1. This can be done by putting one person each in n − 2 rooms and 2
+persons in 1 room. This can be done in C(n, 2) ways. So Snn−1 = C(n,2).
+
+E10) If a positive solution is x1, x2, …, xn, then it can be written as X1+1, X2+1,…,
+Xn + 1, where the Xi’s are non-negative. Thus, the required number is the
+number of non-negative solutions of X1+X2+…+Xn+n = m, which is
+C(n + m − n − 1, m − n) = C(m − 1, m − n).
+E11) This is the number of positive solutions of x1+…+x6 = 100.
+So, the required number is C(100 − 1, 100 − 6) = C(99, 94) = 71,523,144.
+1
+20
+20
+E12) P1000
++ P1000
++ P1020
+.
+
+Had the requirement been that there be exactly 20 bundles, then the number
+20
+would have been P1000
+.
+
+E13) P101 + P102 + P103 + P104 + P105 = P155 .
+
+195
+
+
